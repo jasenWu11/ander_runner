@@ -1,0 +1,52 @@
+<!--pages/home/home.wxml-->
+  <view class="page__bd">
+    <view class="main_title_panel">
+      <view class="title_head_view">
+        <image class="title_head" src="/images/icons/head.png" mode="aspectFill" bindtap="tomine"></image>
+      </view>
+      <text class="title_text">同城取送 1小时达</text>
+      <view class="title_city">
+        东莞
+        <image class="city_image" src="/images/icons/down.png"></image>
+      </view>
+    </view>
+    <view class="map_panel">
+      <view class="order_list">
+        <block wx:for="{{order_data}}" wx:key="item">
+          <view class="order_item" bindtap="to_detail" data-oid="{{item.orderId}}">
+            <view class="title_panel">
+              <text class="order_type_text">取送件</text>
+              <text class="item_type_text">{{item.categoryName}}</text>
+              你距离起点：<text class="status_text">{{item.distance}}</text>
+            </view>
+            <view class="line"></view>
+            <view class="address_view">
+              <view class="address_circle"></view>
+              <view class="address_input" bindinput='getStart' bindtap="add_address" data-type="0">
+                <text class="address_text"> {{item.sAddress}} 
+                      <block wx:if="{{item.startAddress.details == 'null'}}">
+                        {{item.sDetails}}
+                      </block>
+                    </text>
+              </view>
+            </view>
+            <view class="address_view">
+              <view class="address_circle" style="background-color:#fb5e21"></view>
+              <view class="address_input" bindinput='getEnd' bindtap="add_address" data-type="1">
+                <text class="address_text"> {{item.endAddress}} 
+                      <block wx:if="{{item.startAddress.details == 'null'}}">
+                        {{item.endDetails}}
+                      </block></text>
+              </view>
+            </view>
+            <view class="line"></view>
+            <view class="bottom_panel">
+              <text class="send_time_text">约定送达：{{item.sendDate}}</text>
+              <text style="color:#ff0000;font-size:28rpx;margin-right:20rpx;">￥{{item.orderPrice}}</text>
+              <view class="button_view">接单</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
