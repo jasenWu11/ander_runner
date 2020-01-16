@@ -136,12 +136,24 @@ Page({
       student_no: e.detail.value
     })
   },
+  name_Input: function (e) {
+    this.setData({
+      nickname: e.detail.value
+    })
+  },
+  phone_Input: function (e) {
+    this.setData({
+      my_phone: e.detail.value
+    })
+  },
   tobang: function () {
     var that = this;
     var sno = this.data.student_no + '';
+    var nickname = this.data.nickname + '';
+    var my_phone = this.data.my_phone + '';
     console.log('绑定学号' + sno)
     wx.request({
-      url: app.globalData.URL + '/user/runner/update.do?username=' + sno,
+      url: app.globalData.URL + '/user/runner/update.do?username=' + sno + '&nickname=' + nickname + '&phone=' + my_phone,
       method: 'get',
       dataType: 'json',
       responseType: 'text',
@@ -161,6 +173,13 @@ Page({
           that.setData({
             sno: that.data.student_no
           })
+        }else{
+          var msg = res.data.msg
+          wx.showToast({
+            title: msg,
+            image:'/images/icons/wrong.png',
+            duration: 2000
+          });
         }
       },
       fail: function (res) {

@@ -108,7 +108,7 @@ Page({
   },
   binguser: function (code, username, picurl) {
     wx.request({
-      url: app.globalData.URL + '/user/runner/login.do?openid=' + code + '&nickname=' + username + '&url=' + picurl + '&latitude=' + latitude + '&longitude=' + longitude,
+      url: app.globalData.URL + '/user/runner/login.do?openid=' + code + '&url=' + picurl + '&latitude=' + latitude + '&longitude=' + longitude,
       method: 'post',
       dataType: 'json',
       responseType: 'text',

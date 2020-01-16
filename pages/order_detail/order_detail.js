@@ -391,6 +391,7 @@ Page({
             var ordercreatedate = order.ordercreatedate;
             var ordersenddate = order.ordersenddate;
             var runner = data.runner;
+            var remarks = order.remarks;
             var hiddrunner = true;
             if (runner == null) {
               hiddrunner = true
@@ -420,14 +421,15 @@ Page({
               weight_text: weight,
               hiddrunner: hiddrunner,
               type_name: categoryname,
-              orderstate: orderstate
+              orderstate: orderstate,
+              remarks: remarks
             })
             that.set_status(orderstate);
             if (hiddrunner == false) {
               var rnickname = runner.nickname;
               var rphone = runner.phone;
               var start = runner.start;
-              var satisfaction = (start / 5) * 100
+              var satisfaction = ((start / 5) * 100).toFixed(1)
               console.log(satisfaction + '满意度')
               var satisfact_text = "跑腿新手"
               if (satisfaction == 100) {
@@ -649,12 +651,24 @@ Page({
       student_no: e.detail.value
     })
   },
+  name_Input: function (e) {
+    this.setData({
+      nickname: e.detail.value
+    })
+  },
+  phone_Input:function(e) {
+    this.setData({
+      my_phone: e.detail.value
+    })
+  },
   tobang: function() {
     var that = this;
     var sno = this.data.student_no + '';
+    var nickname = this.data.nickname + '';
+    var my_phone = this.data.my_phone + '';
     console.log('绑定学号' + sno)
     wx.request({
-      url: app.globalData.URL + '/user/runner/update.do?username=' + sno,
+      url: app.globalData.URL + '/user/runner/update.do?username=' + sno + '&nickname=' + nickname + '&phone=' + my_phone,
       method: 'get',
       dataType: 'json',
       responseType: 'text',

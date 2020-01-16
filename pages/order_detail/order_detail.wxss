@@ -374,3 +374,31 @@ page{
   visibility:visible;
   opacity:1;
 }
+
+.note_view{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.note_tip_text{
+  height: 100%;
+  color:#888888;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.note_content_text{
+  min-height: 80rpx;
+  color:#000000;
+  font-size: 30rpx;
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 40rpx;
+  flex-wrap: wrap;
+}
